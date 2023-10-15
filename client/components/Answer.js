@@ -4,6 +4,14 @@ import MyBubble from './MyBubble';
 import Bubble from './Bubble';
 
 export default function Answer({ event, currentUser }) {
+    const userDict = {
+      "joa@gmail.com" : "joalee2002",
+      "liaz@gmail.com" : "linnaz123",
+      "isaac@gmail.com" : "izhu1115",
+      "m@gmail.com" : "mishw",
+      "gloria@gmail.com" : "gf222",
+      "eric@gmail.com" : "elee"
+    }
     console.log('CURR USER IN ANS----->', currentUser);
     
     let currUserBubble = [];
@@ -11,12 +19,15 @@ export default function Answer({ event, currentUser }) {
 
     event["ans"].forEach((answer, index) => {
         const ansText = String(answer["ans"]);
+        console.log("ANSTEXTTTSTTTTTTTTTT---->", ansText);
         const timeText = String(answer["time"]);
         const usernameText = String(answer["username"]);
         const commentsCountText = String(answer["commentsCount"]);
-        const emailText = String(answer["email"]);
+        // const emailText = String(answer["emailText"]);
 
-        if(emailText === currentUser) {
+        console.log("CURRENTEXTTTSTTTTTTTTTT---->", currentUser);
+
+        if(userDict[currentUser] === usernameText) {
             currUserBubble.push(
                 <MyBubble 
                     key={index}
