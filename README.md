@@ -46,4 +46,4 @@ We are proud of creating an engaging, fully functioning full-stack application. 
 We learned that Yerba Mate is actually really good— the mint flavour is the best one. 
 
 ## What's next for Impromptu
-In the future, we can allow friends chat with each other through direct message to further foster the social interaction aspect. We will be continuously expanding our selection of questions and are looking into incorporating AI to generate questions more relevant to the user's location, timezone, or other factors. 
+In the future, we can allow friends chat with each other through direct message to further foster the social interaction aspect. We will be continuously expanding our selection of questions and are looking into incorporating AI to generate questions more relevant to the user's location, timezone, demographic, and more. 
