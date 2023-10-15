@@ -23,18 +23,23 @@ const styles = StyleSheet.create({
     color: "#ED3952",
     fontSize: 26,
     textAlign: "center",
-    fontWeight: "500",
+    fontWeight: '600',
+    marginTop: 10,
+    marginBottom: 20
   },
   qHeader: {
     color: "black",
-    fontSize: 25,
+    fontSize: 20,
     textAlign: "center",
+    fontWeight: "600",
+    maxWidth: 280,
+    alignSelf: 'center'
   },
   horizontalDiv: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 10,
+    paddingTop: 16,
   },
   itemStyle: {
     fontSize: 10,

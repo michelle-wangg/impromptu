@@ -1,26 +1,46 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Header from './components/Header';
-import Prompt from './components/Prompt';
-import Answer from './components/Answer';
+import React from 'react';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import LoginScreen from './LoginScreen'; 
+import LandingScreen from './LandingScreen'; 
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  const question = "What made you smile today?";
-  const ansCount = "23";
-  const minute = "12";
+    const navTheme = {
+        ...DefaultTheme,
+        colors: {
+            ...DefaultTheme.colors,
+            background: 'transparent',
+        },
+    };
+
+    const navigateToLogin = () => {
+        // Define the action to navigate back to the Login screen
+        navigation.navigate('Login');
+      };
+      
   return (
-    <View styles={styles.container}>
-      <Header />
-      <Prompt question = {question} answerCount={ansCount} minute={minute}/>
-      <Answer />
-    </View>
+    <NavigationContainer theme={navTheme}>
+        {/* screenOptions={{ headerShown: false }} */}
+      <Stack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }} >
+        <Stack.Screen name="Login" component={LoginScreen} screenOptions={{ headerShown: false }}/>
+        <Stack.Screen 
+            name="Landing" 
+            component={LandingScreen} 
+            screenOptions={{ headerShown: false }}
+            // func={() => {navigation.navigate('Login');}}
+            // () => <LandingScreen navigateToLogin={navigateToLogin}/>
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    display:'flex',
-    flexDirection:'column',
-  },
-
-});
+//  <Button
+//                     title="Back to Login"
+//                     onPress={() => {
+//                     navigation.navigate('Login'); // Navigate to the Login screen
+//                     }}
+//                 /> 
