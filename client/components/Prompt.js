@@ -9,7 +9,7 @@ export default function Prompt(props) {
       <View style={styles.horizontalDiv}>
         <Text style={styles.itemStyle}>{props.answerCount} answers</Text>
         <Text style={styles.itemStyle}>•</Text>
-        <Text style={styles.itemStyle}>{props.minute} minutes</Text>
+        <Text style={styles.itemStyle}>{props.minute} minutes ago</Text>
       </View>
       <View style={styles.container}>
       <View style={styles.line}></View>

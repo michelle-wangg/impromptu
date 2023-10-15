@@ -37,10 +37,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-//  <Button
-//                     title="Back to Login"
-//                     onPress={() => {
-//                     navigation.navigate('Login'); // Navigate to the Login screen
-//                     }}
-//                 /> 
