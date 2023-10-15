@@ -14,6 +14,13 @@ import moment from "moment";
 export default function QuestionBox(props) {
   const [count, setCount] = useState(0);
   const [text, setText] = useState("");
+  const userDict = {
+    "joa@gmail.com" : "joalee2002",
+    "liaz@gmail.com" : "linnaz123",
+    "isaac@gmail.com" : "izhu1115",
+    "m@gmail.com" : "mishw",
+  }
+
   onSubmit = () => {
     // Call the function passed as a prop from the parent
     props.toggleOverlay(false);
