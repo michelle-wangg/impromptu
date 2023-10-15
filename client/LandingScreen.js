@@ -7,8 +7,6 @@ import { useState } from "react";
 import Modal from "react-native-modal";
 
 
-
-
 export default function LandingScreen() {
 
   const question = "What made you smile today?";

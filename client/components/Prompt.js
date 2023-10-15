@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 
 export default function Prompt(props) {
   return (
-    <View>
+    <View style={styles.qContainer}>
       <Text style={styles.qLetter}>Q.</Text>
       <Text style={styles.qHeader}>{props.question}</Text>
       <View style={styles.horizontalDiv}>
@@ -12,20 +12,28 @@ export default function Prompt(props) {
         <Text style={styles.itemStyle}>{props.minute} minutes ago</Text>
       </View>
       <View style={styles.container}>
-      <View style={styles.line}></View>
+        <View style={styles.line}></View>
+      </View> 
     </View>
-    </View>
+      
   );
 }
 
 const styles = StyleSheet.create({
+  qContainer: {
+    // borderColor: "#ED3952", 
+    // borderWidth: 2,   
+    // borderRadius: 25, 
+    // margin: 50,
+    // padding: 30
+  },
   qLetter: {
     color: "#ED3952",
     fontSize: 26,
     textAlign: "center",
     fontWeight: '600',
-    marginTop: 10,
-    marginBottom: 30
+    marginTop: 30,
+    marginBottom: 20
   },
   qHeader: {
     color: "black",
@@ -39,7 +47,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 40,
+    paddingTop: 10,
+    paddingBottom: 10
   },
   itemStyle: {
     fontSize: 10,
