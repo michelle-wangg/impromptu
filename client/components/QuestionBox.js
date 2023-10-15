@@ -14,15 +14,24 @@ import moment from "moment";
 export default function QuestionBox(props) {
   const [count, setCount] = useState(0);
   const [text, setText] = useState("");
-  const onSubmit = () => {
+  const userDict = {
+    "joa@gmail.com" : "joalee2002",
+    "liaz@gmail.com" : "linnaz123",
+    "isaac@gmail.com" : "izhu1115",
+    "m@gmail.com" : "mishw",
+    "gloria@gmail.com" : "gf222",
+    "eric@gmail.com" : "elee"
+  }
+
+  onSubmit = () => {
     // Call the function passed as a prop from the parent
     props.toggleOverlay(false);
     // handlePrompt;
     handlePrompt({
       ans: text.value,
       commentsCount: 0,
-      time: new Date(),
-      username: "newUser123",
+      time: moment(new Date()).format('LT'),
+      username: userDict[props.currentUser]
     });
   };
 
@@ -35,6 +44,9 @@ export default function QuestionBox(props) {
         const formattedDate = moment(jsDateObject.toDate()).format(
           "YYYY-MM-DD"
         );
+        // const formattedTime = moment(jsDateObject.toDate()).format(
+        //   "LT"
+        // );
         const today = new Date();
         const formattedDate2 = moment(today).format("YYYY-MM-DD");
         console.log(today);
