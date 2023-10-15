@@ -14,12 +14,12 @@ import moment from "moment";
 export default function QuestionBox(props) {
   const [count, setCount] = useState(0);
   const [text, setText] = useState("");
-  onSubmit = () => {
+  const onSubmit = () => {
     // Call the function passed as a prop from the parent
     props.toggleOverlay(false);
     // handlePrompt;
     handlePrompt({
-      ans: text,
+      ans: text.value,
       commentsCount: 0,
       time: new Date(),
       username: "newUser123",
@@ -30,19 +30,22 @@ export default function QuestionBox(props) {
     try {
       const querySnapshot = await getDocs(collection(db, "events"));
       querySnapshot.forEach((d) => {
+        //   console.log("note: " + d.data()); //ANS
         const jsDateObject = d.data().date;
         const formattedDate = moment(jsDateObject.toDate()).format(
           "YYYY-MM-DD"
         );
         const today = new Date();
         const formattedDate2 = moment(today).format("YYYY-MM-DD");
-        const arr = d.data().ans;
+        console.log(today);
+        //   const arr = d.data().ans;
         if (formattedDate == formattedDate2) {
-          newAnswer.commentsCount = d.data().ans.length;
+          //   newAnswer.commentsCount = d.data().ans.length;
           // setCount(d.data().ans.length);
           // console.log(d.data().ans.length);
           const docRef = doc(db, "events", d.id);
-
+          // const valueToAdd = newAnswer.value;
+          // console.log(newAnswer);
           // Update the 'ans' array with the new answer
           updateDoc(docRef, {
             ans: arrayUnion(newAnswer),
