@@ -8,7 +8,7 @@ export default function Answer({ event, currentUser }) {
       "joa@gmail.com" : "joalee2002",
       "liaz@gmail.com" : "linnaz123",
       "isaac@gmail.com" : "izhu1115",
-      "m@gmail.com" : "mishw",
+      "michelle@gmail.com" : "mwang",
       "gloria@gmail.com" : "gf222",
       "eric@gmail.com" : "elee",
       "alan@gmail.com" : "awang"

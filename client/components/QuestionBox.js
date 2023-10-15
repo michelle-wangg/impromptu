@@ -18,7 +18,7 @@ export default function QuestionBox(props) {
     "joa@gmail.com": "joalee2002",
     "liaz@gmail.com": "linnaz123",
     "isaac@gmail.com": "izhu1115",
-    "m@gmail.com": "mishw",
+    "michelle@gmail.com": "mwang",
     "gloria@gmail.com": "gf222",
     "eric@gmail.com": "elee",
     "alan@gmail.com" : "awang"
@@ -52,7 +52,7 @@ export default function QuestionBox(props) {
         const formattedDate2 = moment(today).format("YYYY-MM-DD");
         console.log(today);
         //   const arr = d.data().ans;
-        if (formattedDate == formattedDate2 && props.currentUser !== 'eric@gmail.com') {
+        if (formattedDate == formattedDate2 && props.currentUser !== 'michelle@gmail.com') {
           //   newAnswer.commentsCount = d.data().ans.length;
           // setCount(d.data().ans.length);
           // console.log(d.data().ans.length);

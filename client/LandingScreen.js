@@ -18,9 +18,9 @@ export default function LandingScreen({ route }) {
     "joa@gmail.com": "joalee2002",
     "liaz@gmail.com": "linnaz123",
     "isaac@gmail.com": "izhu1115",
-    "m@gmail.com": "mishw",
-    "gloria@gmail.com": "gf222",
     "eric@gmail.com": "elee",
+    "gloria@gmail.com": "gf222",
+    "michelle@gmail.com": "mwang",
     "alan@gmail.com" : "awang"
   };
 
@@ -86,7 +86,7 @@ export default function LandingScreen({ route }) {
 
       // see if user already posted
       for (let i = 0; i < eventsList[0].ans.length; i++) {
-        if (eventsList[0].ans[i]["username"] === "elee"){
+        if (eventsList[0].ans[i]["username"] === "mwang"){
           break;
         } else if (
           eventsList[0].ans[i]["username"] === userDict[String(currentUser)]
