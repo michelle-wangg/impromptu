@@ -13,22 +13,24 @@ export default function App() {
   const minuteAgo = "12";
   const time = "8:00PM";
   const [overlay, setOverlay] = useState(true);
-  const toggleOverlay = () => {
-    setModalVisible(false);
+  toggleOverlay = (bool) => {
+    setOverlay(bool);
   };
   return (
-    <View styles={styles.container} blurRadius={overlay? 100 : 0}>
+    <View styles={styles.container}>
       <Header />
-      <Prompt question = {question} answerCount={ansCount} minute={minuteAgo}/>
-      <Answer />
-      <Modal isVisible={overlay} backdropColor= {"white"} backdropOpacity={0.6}>
+      <Modal isVisible={overlay} backdropColor={"white"} backdropOpacity={0.96}>
         <QuestionBox
           time={time}
           prompt={question}
           minute={minuteAgo}
           ansCount={ansCount}
+          styles={styles.box}
+          toggleOverlay = {this.toggleOverlay}
         />
       </Modal>
+      <Prompt question={question} answerCount={ansCount} minute={minuteAgo} />
+      <Answer />
     </View>
   );
 }
@@ -38,6 +40,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
   },
+  box: {
+    position: "absolute",
+    top: 0, // Adjust this value to move the box up
+    left: "50%",
+    transform: [{ translateX: -50 }], // Centers the box horizontally
+    justifyContent: "center",
+    alignItems: "center",
+  },
   overlay: {
     padding: 20,
     backgroundColor: "rgba(255, 255, 255, 0.75)",
@@ -46,20 +56,27 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   modalView: {
-    width:"100%",
-    position:"absolute",
-    bottom:0,
+    width: "100%",
+    position: "absolute",
+    bottom: 0,
     backgroundColor: "white",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-     
+
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
   },
-  });
+  box: {
+    position: "absolute",
+    top: 10,
+    left: "50%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
