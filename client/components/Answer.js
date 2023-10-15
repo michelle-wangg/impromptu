@@ -4,26 +4,21 @@ import MyBubble from './MyBubble';
 import Bubble from './Bubble';
 
 export default function Answer({ event }) {
-  // Check if the fields and ans properties exist
-  if (!event.fields || !event.fields.ans || !event.fields.ans.arrayValue || !event.fields.ans.arrayValue.values) {
-    console.log("NO DATAAAAAA", event);
-    return null;  // or you can render a loading spinner or some placeholder content
-    
-  }
-  console.log("EVENTTTT", event);
+    // for (const o of event["ans"]) {
+
+    //   console.log("PRINT AND---->", o);
+    // }
 
   return (
     <View style={styles.container}>
       <Text style={styles.aLetter}>A.</Text>
       
-      {event.fields.ans.arrayValue.values.map((answer, index) => {
-          const { username, commentsCount, time, ans } = answer.mapValue.fields; 
-          const ansText = ans.stringValue;
-          const timeText = time.stringValue;
-          const usernameText = username.stringValue;
-          const commentsCountText = commentsCount.stringValue;
-          console.log("ANSTEXT---->", ansText);
-          console.log("TIMETEXT---->", timeText);
+      {event["ans"].map((answer, index) => {
+          const ansText = String(answer["ans"]);
+          
+          const timeText = String(answer["time"]);
+          const usernameText = String(answer["username"]);
+          const commentsCountText = String(answer["commentsCount"]);
           
           return index === 0 ? 
               <MyBubble 
@@ -44,4 +39,19 @@ export default function Answer({ event }) {
     </View>
   );
 };
-// ... (rest of the code remains the same)
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+
+  aLetter: {
+    fontSize: 25,
+    fontWeight: '600',
+    color: '#FFC501',
+    marginTop: 12,
+    marginBottom: 18
+  }
+});
