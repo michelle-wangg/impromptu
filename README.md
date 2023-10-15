@@ -35,7 +35,7 @@ Users can also foster interaction by commenting on each others' responses. The u
 The UI/UX was prototyped using Figma and implemented with React Native. We used NoSQL's database, Firebase for the backend to store and retrieve user information.
 
 ## Challenges we ran into
-- Many members of our team are more familiar with front-end development so for many of us, this was one first times using Firebase. We faced many difficulties, from setting it up to connecting it with the frontend.
+- Our team is more familiar with front-end development so for many of us, this was one first times using Firebase. We faced many difficulties, from setting it up to connecting it with the frontend.
 - Ideating: Our team were able to brainstorm many ideas, but none felt like they were "it." We would discuss and our ideas would be overflowing, to the point where we had to narrow back down as they were unrealistic to complete in a 24 hour hackathon. 
 - We drove from Seattle from Vancouver (UBC) so we struggled with getting enough sleep, having a proper place to rest, and being mindful of staying well-rested for the 3 hour car ride back tomorrow. 
 
@@ -46,4 +46,4 @@ We are proud of creating an engaging, fully functioning full-stack application. 
 We learned that Yerba Mate is actually really good— the mint flavour is the best one. 
 
 ## What's next for Impromptu
-In the future, we can allow friends chat with each other through direct message to further foster the social interaction aspect. We will be continuously expanding our selection of questions, possibly using AI to generate questions more relevant to the user's location, timezone, or other factors. 
+In the future, we can allow friends chat with each other through direct message to further foster the social interaction aspect. We will be continuously expanding our selection of questions and are looking into incorporating AI to generate questions more relevant to the user's location, timezone, or other factors. 
