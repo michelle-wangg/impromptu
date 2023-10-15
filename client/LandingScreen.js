@@ -8,10 +8,13 @@ import QuestionBox from "./components/QuestionBox";
 import Modal from "react-native-modal";
 import { FIREBASE_DB } from './FirebaseConfig';
 
-export default function LandingScreen() {
+export default function LandingScreen({ route }) {
 
   const [events, setEvents] = useState([]);
   const [overlay, setOverlay] = useState(true);
+
+  console.log("ROUTE----->", route["params"]["currentUser"]);
+  const currentUser = route["params"]["currentUser"];
   
   const db = FIREBASE_DB;
 
@@ -62,7 +65,7 @@ export default function LandingScreen() {
       <ScrollView> 
         {/* Example Prompt, you might want to map over prompts and render a Prompt for each */}
         <Prompt question="What made you smile today?" answerCount="23" minute="12"/>
-        {events.map((event, index) => <Answer key={index} event={event} />)}
+        {events.map((event, index) => <Answer key={index} event={event} currentUser={currentUser}/>)}
         <View style={styles.footer}/>
       </ScrollView>
     </View>

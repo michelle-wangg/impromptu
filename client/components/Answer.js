@@ -3,55 +3,63 @@ import { View, Text, StyleSheet } from 'react-native';
 import MyBubble from './MyBubble';
 import Bubble from './Bubble';
 
-export default function Answer({ event }) {
-    // for (const o of event["ans"]) {
+export default function Answer({ event, currentUser }) {
+    console.log('CURR USER IN ANS----->', currentUser);
+    
+    let currUserBubble = [];
+    let friendsBubble = [];
 
-    //   console.log("PRINT AND---->", o);
-    // }
+    event["ans"].forEach((answer, index) => {
+        const ansText = String(answer["ans"]);
+        const timeText = String(answer["time"]);
+        const usernameText = String(answer["username"]);
+        const commentsCountText = String(answer["commentsCount"]);
+        const emailText = String(answer["email"]);
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.aLetter}>A.</Text>
-      
-      {event["ans"].map((answer, index) => {
-          const ansText = String(answer["ans"]);
-          
-          const timeText = String(answer["time"]);
-          const usernameText = String(answer["username"]);
-          const commentsCountText = String(answer["commentsCount"]);
-          
-          return index === 0 ? 
-              <MyBubble 
-                  key={index} 
-                  time={timeText} 
-                  ans={ansText}
-                  username={usernameText}
-                  commentsCount={commentsCountText}
-              /> : 
-              <Bubble 
-                  key={index} 
-                  time={timeText} 
-                  ans={ansText}
-                  username={usernameText}
-                  commentsCount={commentsCountText}
-              />
-      })}
-    </View>
-  );
+        if(emailText === currentUser) {
+            currUserBubble.push(
+                <MyBubble 
+                    key={index}
+                    time={timeText}
+                    ans={ansText}
+                    username={usernameText}
+                    commentsCount={commentsCountText}
+                />
+            );
+        } else {
+            friendsBubble.push(
+                <Bubble 
+                    key={index}
+                    time={timeText}
+                    ans={ansText}
+                    username={usernameText}
+                    commentsCount={commentsCountText}
+                />
+            );
+        }
+    });
+
+    return (
+        <View style={styles.container}>
+            <Text style={styles.aLetter}>A.</Text>
+            {currUserBubble}  
+            {friendsBubble}
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center'
+    },
 
-  aLetter: {
-    fontSize: 25,
-    fontWeight: '600',
-    color: '#FFC501',
-    marginTop: 12,
-    marginBottom: 18
-  }
+    aLetter: {
+        fontSize: 25,
+        fontWeight: '600',
+        color: '#FFC501',
+        marginTop: 12,
+        marginBottom: 18
+    }
 });
