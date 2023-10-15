@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
-import { FIREBASE_AUTH } from './FirebaseConfig';
+import { FIREBASE_AUTH, FIREBASE_DB } from './FirebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function LoginScreen({ navigation }) {
@@ -12,7 +12,6 @@ export default function LoginScreen({ navigation }) {
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
       console.log(response);
-      
     } catch (error) {
       console.log(error);
       alert('Sign up failed: ' + error.message);
