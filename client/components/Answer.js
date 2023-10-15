@@ -3,32 +3,45 @@ import { View, Text, StyleSheet } from 'react-native';
 import MyBubble from './MyBubble';
 import Bubble from './Bubble';
 
-export default function Answer() {
-  
-    return (
-      <View style={styles.container}>
-        <Text style={styles.aLetter}>A.</Text>
-        <MyBubble time="8:02pm" ans="Got my regular latte at Stabucks and the lady drew a smiley face on my cup. AHhhhhhh" />
-        <Bubble time="8:45pm" ans="Had the best nap ever." />
-        <Bubble time="8:23pm" ans="I told myself I’ll do the dishes when I get back from class, but guess what. My best roommate did it for me and even made me cookies (‘:" />
-        <Bubble time="8:15pm" ans="None. Twas a very sad day. sigh." />
-        <Bubble time="8:08pm" ans="WAHOOOOOOOO I AM SO HAPPYYYYYY WWWEEEEEEE" />
-      </View>
-    );
-};
-  
-const styles = StyleSheet.create({
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    },
+export default function Answer({ event }) {
+  // Check if the fields and ans properties exist
+  if (!event.fields || !event.fields.ans || !event.fields.ans.arrayValue || !event.fields.ans.arrayValue.values) {
+    console.log("NO DATAAAAAA", event);
+    return null;  // or you can render a loading spinner or some placeholder content
+    
+  }
+  console.log("EVENTTTT", event);
 
-    aLetter: {
-      fontSize: 25,
-      fontWeight: '600',
-      color: '#FFC501',
-      marginTop: 12,
-      marginBottom: 18
-    }
-});
+  return (
+    <View style={styles.container}>
+      <Text style={styles.aLetter}>A.</Text>
+      
+      {event.fields.ans.arrayValue.values.map((answer, index) => {
+          const { username, commentsCount, time, ans } = answer.mapValue.fields; 
+          const ansText = ans.stringValue;
+          const timeText = time.stringValue;
+          const usernameText = username.stringValue;
+          const commentsCountText = commentsCount.stringValue;
+          console.log("ANSTEXT---->", ansText);
+          console.log("TIMETEXT---->", timeText);
+          
+          return index === 0 ? 
+              <MyBubble 
+                  key={index} 
+                  time={timeText} 
+                  ans={ansText}
+                  username={usernameText}
+                  commentsCount={commentsCountText}
+              /> : 
+              <Bubble 
+                  key={index} 
+                  time={timeText} 
+                  ans={ansText}
+                  username={usernameText}
+                  commentsCount={commentsCountText}
+              />
+      })}
+    </View>
+  );
+};
+// ... (rest of the code remains the same)
