@@ -14,6 +14,14 @@ export default function LandingScreen({ route }) {
   const [question, setQuestion] = useState("");
   const [count, setCount] = useState(0);
 
+  const userDict = {
+    "joa@gmail.com" : "joalee2002",
+    "liaz@gmail.com" : "linnaz123",
+    "isaac@gmail.com" : "izhu1115",
+    "m@gmail.com" : "mishw",
+    "gloria@gmail.com" : "gf222"
+  }
+
   const handleGetPrompt = async () => {
     try {
       const querySnapshot = await getDocs(collection(db, "events"));
@@ -64,16 +72,6 @@ export default function LandingScreen({ route }) {
 
   const db = FIREBASE_DB;
 
-  // useEffect(() => {
-  //   const fetchEvents = async () => {
-  //     const eventsCollection = collection(db, 'events');
-  //     const eventsSnapshot = await getDocs(eventsCollection);
-  //     const eventsList = tolist(eventsSnapshot);
-  //     setEvents(eventsList);
-  //   }
-
-  //   fetchEvents();
-  // }, [db]);
   useEffect(() => {
     const fetchEvents = async () => {
       const eventsCollection = collection(db, "events");
@@ -83,7 +81,28 @@ export default function LandingScreen({ route }) {
         ...doc.data(),
       }));
       setEvents(eventsList);
-      console.log("EVENTSLIST ---->", eventsList);
+
+      // see if user already posted
+      for (let i = 0; i < eventsList[0].ans.length; i++) {
+        if (eventsList[0].ans[i]["username"] === userDict[String(currentUser)]) {
+          setOverlay(false);
+          console.log("FOUNDEVENT ---->", overlay);
+        }
+      }
+
+
+      // console.log("EVENTSLIST ---->", eventsList);
+      // console.log("CURRR USEW ---->", currentUser);
+      
+      // const foundEvent = await eventsList[0]["ans"].find((event) => {
+      //   console.log("DSGVHABJKLDM_--------->", event["username"]);
+      //   console.log("DSGVHABJKLDM_--------->", userDict[String(currentUser)]);
+      //   event["username"] === userDict[String(currentUser)]});
+
+      // if (foundEvent) {
+      //   setOverlay(false);
+      // } 
+      console.log("OVERLAYY ---->", overlay);
     };
 
     fetchEvents();
@@ -105,6 +124,7 @@ export default function LandingScreen({ route }) {
           ansCount={count}
           styles={styles.box}
           toggleOverlay={toggleOverlay}
+          currentUser={currentUser}
         />
       </Modal>
       {/* <Button title="Back to Login" onPress={() => useNavigation.navigate('Login')}/> */}

@@ -19,6 +19,8 @@ export default function QuestionBox(props) {
     "liaz@gmail.com" : "linnaz123",
     "isaac@gmail.com" : "izhu1115",
     "m@gmail.com" : "mishw",
+    "gloria@gmail.com" : "gf222",
+    "eric@gmail.com" : "elee"
   }
 
   onSubmit = () => {
@@ -28,8 +30,8 @@ export default function QuestionBox(props) {
     handlePrompt({
       ans: text,
       commentsCount: 0,
-      time: new Date(),
-      username: "newUser123",
+      time: moment(new Date()).format('LT'),
+      username: userDict[props.currentUser]
     });
   };
 
@@ -41,6 +43,9 @@ export default function QuestionBox(props) {
         const formattedDate = moment(jsDateObject.toDate()).format(
           "YYYY-MM-DD"
         );
+        // const formattedTime = moment(jsDateObject.toDate()).format(
+        //   "LT"
+        // );
         const today = new Date();
         const formattedDate2 = moment(today).format("YYYY-MM-DD");
         const arr = d.data().ans;
