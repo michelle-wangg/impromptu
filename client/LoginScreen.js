@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function LoginScreen({ navigation }) {
   const [username, setUsername] = useState('');
@@ -27,7 +27,9 @@ export default function LoginScreen({ navigation }) {
         secureTextEntry
         style={styles.input}
       />
-      <Button title="Login" onPress={handleLogin} />
+      <TouchableOpacity style={styles.loginButton} title="Login" onPress={handleLogin}>
+        <Text style={styles.buttonText}>Log In</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -57,6 +59,20 @@ const styles = StyleSheet.create({
   boldText: {
       fontWeight: '600'
   },
+
+  loginButton: {
+    width: 150,
+    backgroundColor: '#ED3952',
+    borderRadius: 18,
+    padding: 10,
+    marginTop: 15,
+    alignItems: 'center'
+  },
+
+  buttonText: {
+    color: 'white',
+    fontWeight: '500'
+  }
 
 });
 
