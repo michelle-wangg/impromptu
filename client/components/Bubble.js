@@ -9,12 +9,16 @@ export default function Bubble(props) {
         <Text style={styles.time}>{time}</Text>
         <View style={styles.bubbleContainer}>
             <View style={styles.bubbleComment}>
+                <Image
+                    source={require('../assets/icon-streak.png')} 
+                    style={styles.iconImage}
+                />
                 <View style={styles.myBubble}>
                     <Text style={styles.myBubbleText}>{ans}</Text>
                 </View>
                 <Image
-                source={require('../assets/comment-icon.png')} 
-                style={styles.commentImage}
+                    source={require('../assets/comment-icon.png')} 
+                    style={styles.commentImage}
                 />
             </View>
         </View>
@@ -41,7 +45,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#175EFA',
     borderRadius: 18,
     borderBottomLeftRadius: 0,
-    marginTop: 10
+    marginTop: 10,
+    marginLeft: 8
   },
 
   time: {
@@ -52,7 +57,7 @@ const styles = StyleSheet.create({
   bubbleContainer: {
     display: 'flex',
     alignItems: 'flex-start',
-    width: 300
+    width: 350
   },
 
   commentImage: {
@@ -61,9 +66,15 @@ const styles = StyleSheet.create({
     marginLeft: 8
   },
 
+  iconImage: {
+    width: 33,
+    height: 34,
+  },
+
   bubbleComment: {
+    flex: 1,
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'baseline',
+    alignItems: 'flex-end',
   }
 });

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
 import { FIREBASE_AUTH } from './FirebaseConfig';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -47,8 +47,12 @@ const handleLogin = async () => {
          secureTextEntry
          style={styles.input}
        />
-      <Button title="Login" onPress={handleLogin} />
-      <Button title="Sign Up" onPress={handleSignUp} />
+      <TouchableOpacity style={styles.loginButton} title="Login" onPress={handleLogin}>
+        <Text style={styles.buttonText}>Log In</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.loginButton} title="SignUp" onPress={handleSignUp}>
+        <Text style={styles.buttonText}>Sign Up</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -78,6 +82,20 @@ const styles = StyleSheet.create({
   boldText: {
       fontWeight: '600'
   },
+
+  loginButton: {
+    width: 150,
+    backgroundColor: '#ED3952',
+    borderRadius: 18,
+    padding: 10,
+    marginTop: 15,
+    alignItems: 'center'
+  },
+
+  buttonText: {
+    color: 'white',
+    fontWeight: '500'
+  }
 
 });
 

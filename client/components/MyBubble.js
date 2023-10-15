@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: 50
+    marginBottom: 40
   },
 
   myBubbleText: {
