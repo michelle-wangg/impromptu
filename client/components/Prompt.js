@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: '600',
     marginTop: 10,
-    marginBottom: 20
+    marginBottom: 30
   },
   qHeader: {
     color: "black",
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 16,
+    paddingTop: 40,
   },
   itemStyle: {
     fontSize: 10,

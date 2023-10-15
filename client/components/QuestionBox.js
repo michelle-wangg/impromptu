@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "500",
     paddingBottom: 80,
+    marginTop: 90
   },
   container: {
     flex: 1,
@@ -84,12 +85,13 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 15,
     paddingTop: 10,
+    marginBottom: -15
   },
   horizontalDiv: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 10,
+    paddingBottom: 20,
   },
   itemStyle: {
     fontSize: 12,
@@ -105,5 +107,6 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     backgroundColor: "white",
     borderRadius: 12,
+    paddingLeft: 20
   },
 });
