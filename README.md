@@ -23,11 +23,11 @@ Impromptu is a mobile app that prompts you to answer curated, engaging questions
 
 Questions are relevant to the time of the day, for example: 
 
-9:00AM: What did you dream about last night?  
+9:02AM: What did you dream about last night?  
 
-12:00PM: Take a photo of your lunch.
+12:36PM: Take a photo of your lunch.
 
-10:00PM: Reflect on the day and desribe something that made you smile. 
+10:51PM: Reflect on the day and desribe something that made you smile. 
 
 Answer your question to be able to see your friends' responses! Share your experiences, learn more about each other, and stay connected day-to-day with your friends— Impromptu does it all for you, without you having to reach out. Never miss a day to garner an answering streak! 
 
