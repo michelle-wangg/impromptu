@@ -15,13 +15,13 @@ export default function QuestionBox(props) {
   const [count, setCount] = useState(0);
   const [text, setText] = useState("");
   const userDict = {
-    "joa@gmail.com" : "joalee2002",
-    "liaz@gmail.com" : "linnaz123",
-    "isaac@gmail.com" : "izhu1115",
-    "m@gmail.com" : "mishw",
-    "gloria@gmail.com" : "gf222",
-    "eric@gmail.com" : "elee"
-  }
+    "joa@gmail.com": "joalee2002",
+    "liaz@gmail.com": "linnaz123",
+    "isaac@gmail.com": "izhu1115",
+    "m@gmail.com": "mishw",
+    "gloria@gmail.com": "gf222",
+    "eric@gmail.com": "elee",
+  };
 
   onSubmit = () => {
     // Call the function passed as a prop from the parent
@@ -30,8 +30,8 @@ export default function QuestionBox(props) {
     handlePrompt({
       ans: text.value,
       commentsCount: 0,
-      time: moment(new Date()).format('LT'),
-      username: userDict[props.currentUser]
+      time: moment(new Date()).format("LT"),
+      username: userDict[props.currentUser],
     });
   };
 
@@ -57,7 +57,7 @@ export default function QuestionBox(props) {
           // console.log(d.data().ans.length);
           const docRef = doc(db, "events", d.id);
           // const valueToAdd = newAnswer.value;
-          // console.log(newAnswer);
+          console.log(newAnswer);
           // Update the 'ans' array with the new answer
           updateDoc(docRef, {
             ans: arrayUnion(newAnswer),
