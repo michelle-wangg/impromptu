@@ -1,4 +1,4 @@
-# impromptu - DubHacks 2023
+# Impromptu - DubHacks 2023
 
 ## Inspiration
 
