@@ -10,7 +10,8 @@ export default function Answer({ event, currentUser }) {
       "isaac@gmail.com" : "izhu1115",
       "m@gmail.com" : "mishw",
       "gloria@gmail.com" : "gf222",
-      "eric@gmail.com" : "elee"
+      "eric@gmail.com" : "elee",
+      "alan@gmail.com" : "awang"
     }
     console.log('CURR USER IN ANS----->', currentUser);
     

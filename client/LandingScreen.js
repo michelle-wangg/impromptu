@@ -21,6 +21,7 @@ export default function LandingScreen({ route }) {
     "m@gmail.com": "mishw",
     "gloria@gmail.com": "gf222",
     "eric@gmail.com": "elee",
+    "alan@gmail.com" : "awang"
   };
 
   const handleGetPrompt = async () => {
@@ -85,7 +86,9 @@ export default function LandingScreen({ route }) {
 
       // see if user already posted
       for (let i = 0; i < eventsList[0].ans.length; i++) {
-        if (
+        if (eventsList[0].ans[i]["username"] === "elee"){
+          break;
+        } else if (
           eventsList[0].ans[i]["username"] === userDict[String(currentUser)]
         ) {
           setOverlay(false);

@@ -21,6 +21,7 @@ export default function QuestionBox(props) {
     "m@gmail.com": "mishw",
     "gloria@gmail.com": "gf222",
     "eric@gmail.com": "elee",
+    "alan@gmail.com" : "awang"
   };
 
   onSubmit = () => {
@@ -51,7 +52,7 @@ export default function QuestionBox(props) {
         const formattedDate2 = moment(today).format("YYYY-MM-DD");
         console.log(today);
         //   const arr = d.data().ans;
-        if (formattedDate == formattedDate2) {
+        if (formattedDate == formattedDate2 && props.currentUser !== 'eric@gmail.com') {
           //   newAnswer.commentsCount = d.data().ans.length;
           // setCount(d.data().ans.length);
           // console.log(d.data().ans.length);
