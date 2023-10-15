@@ -27,12 +27,14 @@ Questions are relevant to the time of the day, for example:
 
 12:00PM: Take a photo of your lunch.
 
+10:00PM: Reflect on the day and desribe something that made you smile. 
+
 Answer your question to be able to see your friends' responses! Share your experiences, learn more about each other, and stay connected day-to-day with your friends— Impromptu does it all for you, without you having to reach out. Never miss a day to garner an answering streak! 
 
 Users can also foster interaction by commenting on each others' responses. The user profile will display a consolidated view of your responses over time, allowing you to reflect on your past memories. 
 
 ## How we built it
-The UI/UX was prototyped using Figma and implemented with React Native. We used NoSQL's database, Firebase for the backend to store and retrieve user information.
+The UI/UX was prototyped using Figma and implemented with React Native and Expo.io. We used NoSQL's database, Firebase for the backend to store and retrieve user information. The development team collaborated over Github and used Visual Studio Code as our code editor. 
 
 ## Challenges we ran into
 - Our team is more familiar with front-end development so for many of us, this was one first times using Firebase. We faced many difficulties, from setting it up to connecting it with the frontend.
