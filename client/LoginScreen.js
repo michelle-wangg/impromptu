@@ -23,7 +23,6 @@ const handleLogin = async () => {
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
       console.log(response);
-      alert('Logged in successfully');
       navigation.navigate('Landing');
     } catch (error) {
       console.log(error);
