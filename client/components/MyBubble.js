@@ -29,13 +29,14 @@ const styles = StyleSheet.create({
   },
 
   myBubble: {
-    width: 280,
+    maxWidth: 280,
     padding: 16,
     color:'white',
     backgroundColor: '#FFC501',
     borderRadius: 18,
     borderBottomRightRadius: 0,
-    marginTop: 10
+    marginTop: 10,
+    marginRight: 30
   },
 
   time: {
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
   myBubbleContainer: {
     display: 'flex',
     alignItems: 'flex-end',
-    left: 30
+    left: 30,
+    width: 350
   }
 });
