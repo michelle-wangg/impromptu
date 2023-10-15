@@ -1,18 +1,18 @@
 import { StyleSheet, View, ScrollView } from "react-native";
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import Header from "./components/Header";
 import Prompt from "./components/Prompt";
 import Answer from "./components/Answer";
 import QuestionBox from "./components/QuestionBox";
-import { useState } from "react";
 import Modal from "react-native-modal";
+import { FIREBASE_DB } from './FirebaseConfig';
 import moment from "moment";
 
 import { FIREBASE_DB } from "./FirebaseConfig";
 import { collection, doc, getDocs } from "firebase/firestore";
 const db = FIREBASE_DB;
 
-export default function LandingScreen() {
+export default function LandingScreen({route}) {
   const [question, setQuestion] = useState("");
   const [count, setCount] = useState(0);
 
@@ -58,14 +58,49 @@ export default function LandingScreen() {
   }, []);
   const minute = "12";
   const time = "8:00PM";
+  const [events, setEvents] = useState([]);
   const [overlay, setOverlay] = useState(true);
-  toggleOverlay = (bool) => {
+
+  console.log("ROUTE----->", route["params"]["currentUser"]);
+  const currentUser = route["params"]["currentUser"];
+  
+  const db = FIREBASE_DB;
+
+  // useEffect(() => {
+  //   const fetchEvents = async () => {
+  //     const eventsCollection = collection(db, 'events');
+  //     const eventsSnapshot = await getDocs(eventsCollection);
+  //     const eventsList = tolist(eventsSnapshot);
+  //     setEvents(eventsList);
+  //   }
+
+  //   fetchEvents();
+  // }, [db]);
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const eventsCollection = collection(db, 'events');
+      const eventsSnapshot = await getDocs(eventsCollection);
+      const eventsList = eventsSnapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setEvents(eventsList);
+      console.log("EVENTSLIST ---->", eventsList);
+    }
+
+    fetchEvents();
+  }, [db]);
+
+
+  const toggleOverlay = (bool) => {
     setOverlay(bool);
   };
+
   return (
     <View style={styles.container}>
       <Header />
       <Modal isVisible={overlay} backdropColor={"white"} backdropOpacity={0.96}>
+        {/* Example QuestionBox, you might want to map over questions and render a QuestionBox for each */}
         <QuestionBox
           time={time}
           prompt={question}
@@ -78,7 +113,7 @@ export default function LandingScreen() {
       {/* <Button title="Back to Login" onPress={() => useNavigation.navigate('Login')}/> */}
       <ScrollView>
         <Prompt question={question} answerCount={count} minute={minute} />
-        <Answer />
+        {events.map((event, index) => <Answer key={index} event={event} currentUser={currentUser}/>)}
         <View style={styles.footer} />
       </ScrollView>
     </View>
