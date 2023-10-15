@@ -3,6 +3,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var admin = require('firebase-admin');
+var serviceAccount = require('./impromptu-adb4b-firebase-adminsdk-qy023-c5cb1c5a9e.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+var db = admin.firestore();
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
