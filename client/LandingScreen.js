@@ -1,8 +1,12 @@
-import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
 import Header from './components/Header';
 import Prompt from './components/Prompt';
 import Answer from './components/Answer';
-import { useNavigation } from '@react-navigation/native';
+import QuestionBox from "./components/QuestionBox";
+import { useState } from "react";
+import Modal from "react-native-modal";
+
+
 
 
 export default function LandingScreen() {
@@ -22,7 +26,7 @@ export default function LandingScreen() {
         <QuestionBox
           time={time}
           prompt={question}
-          minute={minuteAgo}
+          minute={minute}
           ansCount={ansCount}
           styles={styles.box}
           toggleOverlay = {this.toggleOverlay}
@@ -52,9 +56,9 @@ const styles = StyleSheet.create({
 
   box: {
     position: "absolute",
-    top: 0, // Adjust this value to move the box up
+    top: 0, 
     left: "50%",
-    transform: [{ translateX: -50 }], // Centers the box horizontally
+    transform: [{ translateX: -50 }], 
     justifyContent: "center",
     alignItems: "center",
   },
