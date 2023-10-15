@@ -1,18 +1,61 @@
-import { StyleSheet, View, ScrollView } from 'react-native';
-import Header from './components/Header';
-import Prompt from './components/Prompt';
-import Answer from './components/Answer';
+import { StyleSheet, View, ScrollView } from "react-native";
+import React, { useEffect } from "react";
+import Header from "./components/Header";
+import Prompt from "./components/Prompt";
+import Answer from "./components/Answer";
 import QuestionBox from "./components/QuestionBox";
 import { useState } from "react";
 import Modal from "react-native-modal";
+import moment from "moment";
 
-
-
+import { FIREBASE_DB } from "./FirebaseConfig";
+import { collection, doc, getDocs } from "firebase/firestore";
+const db = FIREBASE_DB;
 
 export default function LandingScreen() {
+  const [question, setQuestion] = useState("");
+  const [count, setCount] = useState(0);
 
-  const question = "What made you smile today?";
-  const ansCount = "23";
+  const handleGetPrompt = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "events"));
+      querySnapshot.forEach((doc) => {
+        const jsDateObject = doc.data().date;
+        const formattedDate = moment(jsDateObject.toDate()).format(
+          "YYYY-MM-DD"
+        );
+        const today = new Date();
+        const formattedDate2 = moment(today).format("YYYY-MM-DD");
+        if (formattedDate == formattedDate2) {
+          setQuestion(doc.data().prompt);
+          // console.log(doc.data().prompt);
+        }
+      });
+    } catch (error) {
+      console.log("No such document for prompt!");
+      alert("Couldnt fetch prompt");
+    }
+  };
+
+  const handleGetAnswerCount = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "events"));
+      querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        const listField = data.ans;
+        setCount(count + listField.length);
+        // console.print(doc.data());
+        // setCount(count);
+      });
+    } catch (error) {
+      console.log("No such document!");
+      alert("Couldnt fetch prompt");
+    }
+  };
+  useEffect(() => {
+    handleGetPrompt();
+    handleGetAnswerCount();
+  }, []);
   const minute = "12";
   const time = "8:00PM";
   const [overlay, setOverlay] = useState(true);
@@ -27,16 +70,16 @@ export default function LandingScreen() {
           time={time}
           prompt={question}
           minute={minute}
-          ansCount={ansCount}
+          ansCount={count}
           styles={styles.box}
-          toggleOverlay = {this.toggleOverlay}
+          toggleOverlay={this.toggleOverlay}
         />
       </Modal>
       {/* <Button title="Back to Login" onPress={() => useNavigation.navigate('Login')}/> */}
-      <ScrollView> 
-        <Prompt question={question} answerCount={ansCount} minute={minute}/>
+      <ScrollView>
+        <Prompt question={question} answerCount={count} minute={minute} />
         <Answer />
-        <View style={styles.footer}/>
+        <View style={styles.footer} />
       </ScrollView>
     </View>
   );
@@ -44,21 +87,21 @@ export default function LandingScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    display:'flex',
-    flexDirection:'column',
-    backgroundColor: 'white'
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "white",
   },
 
-  footer:{
-    height:200,
-    backgroundColor: 'white'
+  footer: {
+    height: 200,
+    backgroundColor: "white",
   },
 
   box: {
     position: "absolute",
-    top: 0, 
+    top: 0,
     left: "50%",
-    transform: [{ translateX: -50 }], 
+    transform: [{ translateX: -50 }],
     justifyContent: "center",
     alignItems: "center",
   },

@@ -33,7 +33,7 @@ const handleLogin = async () => {
     <View style={styles.container}>
         <Text style={styles.logo}>Im<Text style={styles.boldText}>prompt</Text>u</Text>
        <TextInput
-         placeholder="Emai"
+         placeholder="Email"
          value={email}
          onChangeText={setEmail}
          style={styles.input}

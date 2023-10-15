@@ -1,11 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
+import { FIREBASE_DB } from "client/FirebaseConfig.js";
+import {
+  collection,
+  doc,
+  updateDoc,
+  getDocs,
+  arrayUnion,
+} from "firebase/firestore";
+const db = FIREBASE_DB;
+import moment from "moment";
 
 export default function QuestionBox(props) {
+  const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
   onSubmit = () => {
     // Call the function passed as a prop from the parent
     props.toggleOverlay(false);
+    // handlePrompt;
+    handlePrompt({
+      ans: text,
+      commentsCount: 0,
+      time: new Date(),
+      username: "newUser123",
+    });
   };
+
+  const handlePrompt = async (newAnswer) => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "events"));
+      querySnapshot.forEach((d) => {
+        const jsDateObject = d.data().date;
+        const formattedDate = moment(jsDateObject.toDate()).format(
+          "YYYY-MM-DD"
+        );
+        const today = new Date();
+        const formattedDate2 = moment(today).format("YYYY-MM-DD");
+        const arr = d.data().ans;
+        if (formattedDate == formattedDate2) {
+          newAnswer.commentsCount = d.data().ans.length;
+          // setCount(d.data().ans.length);
+          // console.log(d.data().ans.length);
+          const docRef = doc(db, "events", d.id);
+
+          // Update the 'ans' array with the new answer
+          updateDoc(docRef, {
+            ans: arrayUnion(newAnswer),
+          });
+        }
+      });
+    } catch (error) {
+      console.error("Error setting document:", error);
+    }
+  };
+
   return (
     <View>
       {/* <Text style={styles.qLetter}>Q.</Text> */}
@@ -29,6 +77,7 @@ export default function QuestionBox(props) {
               style={styles.input}
               placeholder="   Write your answer"
               onSubmitEditing={onSubmit}
+              onChangeText={(value) => setText({ value })}
             ></TextInput>
           </View>
         </View>
@@ -47,7 +96,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "500",
     paddingBottom: 80,
-    marginTop: 90
+    marginTop: 90,
   },
   container: {
     flex: 1,
@@ -85,7 +134,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 15,
     paddingTop: 10,
-    marginBottom: -15
+    marginBottom: -15,
   },
   horizontalDiv: {
     flexDirection: "row",
@@ -107,6 +156,6 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     backgroundColor: "white",
     borderRadius: 12,
-    paddingLeft: 20
+    paddingLeft: 20,
   },
 });
